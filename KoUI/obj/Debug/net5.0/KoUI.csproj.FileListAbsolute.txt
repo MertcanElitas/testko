@@ -354,3 +354,4 @@
 /Users/melitas/RiderProjects/KoExamples/KoUI/bin/Debug/net5.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll
 /Users/melitas/RiderProjects/KoExamples/KoUI/bin/Debug/net5.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
 /Users/melitas/RiderProjects/KoExamples/KoUI/obj/Debug/net5.0/KoUI.MvcApplicationPartsAssemblyInfo.cs
+/Users/melitas/RiderProjects/KoExamples/KoUI/obj/Debug/net5.0/Razor/Views/Home/About.cshtml.g.cs

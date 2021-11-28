@@ -1,0 +1,89 @@
+@{
+    ViewData["Title"] = "About";
+}
+
+@* <table width="25%"> *@
+@*     <tr> *@
+@*         <td>Tüm arkadaşların sayısı <label style="color:red;" data-bind="text: Mans().length"></label></td> *@
+@*         <td>Bekar arkadaşların sayısı <label style="color:red;" data-bind="text: Singles().length"></label></td> *@
+@*     </tr> *@
+@*     <tr> *@
+@*         <td> *@
+@*             <div> *@
+@*                 <ul data-bind="template: { name: 'ArkadaslarTemplate', foreach: Mans }"></ul> *@
+@*             </div> *@
+@*         </td> *@
+@*         <td> *@
+@*             <div> *@
+@*                 <ul data-bind="template: { name: 'BekarlarTemplate', foreach: Singles }"></ul> *@
+@*             </div> *@
+@*         </td> *@
+@*     </tr> *@
+@* </table> *@
+
+<div>
+    <input type="text" data-bind="value:MainProp"/>
+    <label data-bind="text:MainProp"></label>
+</div>
+
+<div>
+    <input type="text" data-bind="value:MainProp"/>
+    <input type="text" data-bind="value:MainProp"/>
+</div>
+ 
+<script id="ArkadaslarTemplate" type="text/html">
+    <li>
+        <strong>Adı : </strong>
+        <span data-bind="text: Name"></span>
+        <br />
+        <strong>Soyadı : </strong>
+        <span data-bind="text: lastname"></span>
+    </li>
+</script>
+ 
+<script id="BekarlarTemplate" type="text/html">
+    <li>
+        <strong>Adı : </strong>
+        <span data-bind="text: Name"></span>
+        <br />
+        <strong>Soyadı : </strong>
+        <span data-bind="text: lastname"></span>
+    </li>
+</script>
+
+<script type="text/javascript">
+  function friends(name,lastname,age,state){
+      let friend={
+          Name:name, 
+          lastname:lastname,
+          Age:age, 
+          state:state
+      }
+      
+      return friend;
+  }
+  
+  function VMFriends() {
+      Mans = ko.observableArray([
+          new friends("Gençay", "Yıldız", 25, false),
+          new friends("Hilmi", "Celayir", 35, true),
+          new friends("Canan", "Aytun", 28, true),
+          new friends("Mustafa", "Çorumlu", 25, true),
+          new friends("Sabri", "Maltepe", 25, false),
+          new friends("Gülten", "Dursun", 16, false)
+      ]);
+      
+      Singles=ko.computed(function (){
+          return ko.utils.arrayFilter(Mans(),function (man){return man.state})
+      })
+  }
+  
+  function MyProp(){
+       MainProp=ko.observable("mertcan");
+  }
+  
+  $(document).ready(function () {
+          ko.applyBindings(MyProp);
+      });
+  
+</script>
