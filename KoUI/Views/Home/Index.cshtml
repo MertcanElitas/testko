@@ -42,13 +42,43 @@
 @*     </tr> *@
 @* </table> *@
 
-<div>
-    <p data-bind="text : Name"></p>
-    <p data-bind="text : LastName"></p>
-    <p data-bind="text : Age"></p>
-    <p data-bind="text : Gender"></p>
-    <p data-bind="text : Example"></p>
-</div>
+@* <div> *@
+@*     <p data-bind="text : Name"></p> *@
+@*     <p data-bind="text : LastName"></p> *@
+@*     <p data-bind="text : Age"></p> *@
+@*     <p data-bind="text : Gender"></p> *@
+@*     <p data-bind="text : Example"></p> *@
+@* </div> *@
+
+@* <h2>İnsanlar (<label data-bind="text:Insanlar().length"></label>)</h2> *@
+@* <table style="width: 50%"> *@
+@*     <tbody data-bind="template:{name:'PeopleTemplate',foreach:Insanlar}"></tbody> *@
+@* </table> *@
+
+<div data-bind="template:{name:StudentTemplate,data:Student}"></div>
+
+<script id="PeopleTemplate" type="text/html">
+    <tr>
+        <td style="width:30%;" data-bind="text: name"></td>
+        <td style="width:30%;" data-bind="text: lastname"></td>
+        <td data-bind="text: age"></td>
+    </tr>
+</script>
+
+<script id="StudentTemplate" type="text/html">
+    <h4>Öğrenci</h4>
+    <p><strong>Tip : </strong><span data-bind="text: Tip"></span></p>
+    <p><strong>Adı : </strong><span data-bind="text: Name"></span></p>
+    <p><strong>Soyadı : </strong><span data-bind="text: Lastname"></span></p>
+    <p><strong>Numarası : </strong><span data-bind="text: Number"></span></p>
+</script>
+<script id="TeacherTemplate" type="text/html">
+    <h4>Öğretmen</h4>
+    <p><strong>Tip : </strong><span data-bind="text: Tip"></span></p>
+    <p><strong>Adı : </strong><span data-bind="text: Name"></span></p>
+    <p><strong>Soyadı : </strong><span data-bind="text: Lastname"></span></p>
+    <p><strong>Dersi : </strong><span data-bind="text: Lesson"></span></p>
+</script>
 
 
 <script type="text/javascript">
@@ -65,14 +95,13 @@
  //          ko.applyBindings(ViewModel());
  //      });
  </script>
-
 <script type="text/javascript">
  function GeneratePerson(name,lastname,age,gender){
         let _name=name;
         let _lastname=lastname;
         let _age=age;
         let _gender=gender;
-        
+
         return {
                 name: _name,
                 lastname: _lastname,
@@ -80,18 +109,44 @@
                 gender: _gender
             };
      }
+ //    
+ //     function ViewModel(){
+ //     InsanNesnesi=GeneratePerson("Mertcan","Elitaş","25","Erkek")
+ //    
+ //     Name=ko.observable(InsanNesnesi.name);
+ //     LastName=InsanNesnesi.lastname;
+ //     Age=InsanNesnesi.age;
+ //     Gender=InsanNesnesi.gender;
+ //     Example="Test"
+ //     };
+ //    
+ // $(document).ready(function () {
+ //     ko.applyBindings(ViewModel());
+ //     });
+ 
+ function VmPeople(){
+     let peoples=[
+         GeneratePerson("Mertcan",'Elitas','25',"Erkek"),
+         GeneratePerson("Gamze",'Elitas','25',"Kadın"),
+         GeneratePerson("Mine",'Elitas','25',"Kadın"),
+         GeneratePerson("Hikmet",'Elitas','25',"Erkek"),
+         ];
      
-     function ViewModel(){
-     InsanNesnesi=GeneratePerson("Mertcan","Elitaş","25","Erkek")
-     
-     Name=ko.observable(InsanNesnesi.name);
-     LastName=InsanNesnesi.lastname;
-     Age=InsanNesnesi.age;
-     Gender=InsanNesnesi.gender;
-     Example="Test"
-     };
-     
- $(document).ready(function () {
-     ko.applyBindings(ViewModel());
-     });
+     Insanlar=  ko.observableArray(peoples);
+ }
+ 
+ 
 </script>
+
+<script type="text/javascript">
+let asd='Mertca';
+function VMOkul() {
+        Student = { Name: "Gençay", Lastname: "Yıldız", Number: 11040355 };
+        Teacher = { Name: "Nurettin", Lastname: "Şimşek", Lesson: "LMS" };
+    }
+    
+    $(document).ready(function () {
+          ko.applyBindings(VMOkul);
+          });
+</script>
+
